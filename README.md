@@ -24,4 +24,12 @@ To use this buildpack, you should prepare .buildpacks file that contains this bu
 You can verify installing ffmpeg by following command.
 
     $ heroku run "ffmpeg -version"
+    
+Notes
+-----
+As of right now, I have had issues calling the ffmpeg command from my path on heroku. Right now a quick workaround is to call ffmpeg in production with a line like this:
+    
+    Rails.env.production? ? command = "vendor/ffmpeg/bin/ffmpeg" : command = "ffmpeg"
+    
+And then running this command for whatever purpose it needs to fulfill.
 
